@@ -9,7 +9,20 @@ feature "Sign Up", type: :feature do
   end
 
   scenario "I should not be able to sign up if password and password confirmation do not match" do
-    expect { fail_sign_up }.not_to change(User, :count)
+    expect { fail_sign_up_password }.not_to change(User, :count)
+    expect(current_path).to eq("/user/new")
+    expect(page).to have_content("Sign Up")
+  end
+
+  scenario "I should not be allowed to log in with an existing email" do
+    sign_up
+    expect { fail_sign_up_email }.not_to change(User, :count)
+    expect(current_path).to eq("/user/new")
+    expect(page).to have_content("Sign Up")
+  end
+
+  scenario "I should not be able to sign_up with an invalid email address" do
+    expect{ invalid_email }.to_not change(User, :count)
     expect(current_path).to eq("/user/new")
     expect(page).to have_content("Sign Up")
   end

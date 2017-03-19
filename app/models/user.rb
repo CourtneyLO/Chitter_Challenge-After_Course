@@ -1,5 +1,6 @@
 require 'data_mapper'
 require 'dm-postgres-adapter'
+# require 'dm-validations'
 require 'bcrypt'
 
 class User
@@ -16,6 +17,8 @@ class User
   attr_accessor :password_confirmation
 
   validates_confirmation_of :password
+  validates_uniqueness_of :email
+  validates_format_of :email, as: :email_address
 
   def password=(password)
     @password = password
