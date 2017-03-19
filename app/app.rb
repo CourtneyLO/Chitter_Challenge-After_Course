@@ -7,6 +7,8 @@ require 'data_mapper'
 
 class Chitter < Sinatra::Base
 
+  attr_reader :user
+
 enable :sessions
 set :session_secret, 'super secret'
 
@@ -27,9 +29,9 @@ set :session_secret, 'super secret'
       password: params[:password],
       password_confirmation: params[:password_confirmation])
 
-  if @user.save
-    session[:user_id] = @user.id
-    session[:username] = @user.username
+  if user.save
+    session[:user_id] = user.id
+    session[:username] = user.username
     redirect '/'
   else
     redirect '/user/new'
