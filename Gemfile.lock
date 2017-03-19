@@ -137,6 +137,7 @@ DEPENDENCIES
   dm-migrations
   dm-postgres-adapter
   dm-transactions
+  dm-validations
   rake
   rspec
   rspec-sinatra

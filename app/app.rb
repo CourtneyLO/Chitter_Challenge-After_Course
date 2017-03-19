@@ -12,7 +12,6 @@ set :session_secret, 'super secret'
 
 
   get '/' do
-    @user = User.last
     erb :'home_page'
   end
 
@@ -36,6 +35,12 @@ set :session_secret, 'super secret'
     redirect '/user/new'
   end
 end
+
+helpers do
+   def current_user
+     @current_user ||= User.get(session[:user_id])
+   end
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0

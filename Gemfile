@@ -7,6 +7,7 @@ gem 'dm-postgres-adapter'
 gem 'bcrypt'
 gem 'dm-migrations'
 gem 'dm-transactions'
+gem 'dm-validations'
 
 
 group :test do
