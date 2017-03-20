@@ -7,6 +7,7 @@ require 'data_mapper'
 
 class Chitter < Sinatra::Base
 
+
   attr_reader :user
 
 enable :sessions
@@ -38,12 +39,30 @@ set :session_secret, 'super secret'
   end
 end
 
+get '/session/new' do
+  erb :'session/new'
+end
+
+post '/session' do
+  @user = User.authenticate(params[:username], params[:password])
+
+  if @user
+    session[:name] = @user.name
+    redirect '/'
+  else
+    redirect '/session/new'
+
+  end
+
+end
+
 helpers do
    def current_user
      @current_user ||= User.get(session[:user_id])
    end
   end
 
+enable :run
   # start the server if ruby file executed directly
   run! if app_file == $0
 end

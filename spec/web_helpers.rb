@@ -37,3 +37,9 @@
     fill_in("password_confirmation", with: "password")
     click_button("Sign Up")
   end
+
+  def log_in
+    fill_in("username", with: "Dan01")
+    fill_in("password", with: "password")
+    click_button("Log In")
+  end

@@ -28,14 +28,12 @@ class User
   def self.authenticate(username, password)
     user = first(username: username)
 
-    if user && BCrypt::Password.new(user.password_digest) == password_digest
+    if user && BCrypt::Password.new(user.password_digest) == password
       user
     else
       nil
     end
-
   end
-
 end
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/chitter_#{ENV['RACK_ENV']}")
