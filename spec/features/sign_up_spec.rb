@@ -26,4 +26,13 @@ feature "Sign Up", type: :feature do
     expect(current_path).to eq("/user/new")
     expect(page).to have_content("Sign Up")
   end
+
+  scenario "I should be able to access the log in page from sign up page" do
+    visit('/user/new')
+
+    click_link('Log In')
+
+    expect(current_path).to eq('/session/new')
+    expect(page).to have_content("Log In") 
+  end
 end
