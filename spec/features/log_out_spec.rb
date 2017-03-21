@@ -16,7 +16,7 @@ feature "Log Out", type: :feature do
     log_in
 
     expect(current_path).to eq("/")
-    expect(page).to have_content("Welcome Dan")
+    expect(page).to have_content("Dan")
   end
 
   scenario "I want to ensure that when someone logs out there is no current user" do
