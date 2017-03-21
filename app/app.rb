@@ -2,6 +2,7 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require_relative './models/user.rb'
+require_relative './models/peep.rb'
 require 'data_mapper'
 
 
@@ -15,6 +16,7 @@ set :session_secret, 'super secret'
 
 
   get '/' do
+    @peeps = Peep.all
     erb :'home_page'
   end
 
@@ -51,16 +53,31 @@ post '/session' do
     redirect '/'
   else
     redirect '/session/new'
+  end
+end
 
+get '/peep/new' do
+  erb :'peep/new'
+end
+
+post '/peep' do
+  @peep = Peep.create(message: params[:message])
+
+  if @peep.save
+    redirect('/')
+  else
+    redirect ('/peep/new')
   end
 
 end
+
+
 
 helpers do
    def current_user
      @current_user ||= User.get(session[:user_id])
    end
-  end
+end
 
 enable :run
   # start the server if ruby file executed directly

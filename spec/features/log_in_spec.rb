@@ -1,9 +1,13 @@
 require 'spec_helper'
 
 feature "Log In", type: :feature do
-  scenario "I want to be able to log into Chitter" do
+
+  before do
     sign_up
     visit('/session/new')
+  end
+
+  scenario "I want to be able to log into Chitter" do
     expect(status_code).to eq(200)
 
     log_in
@@ -12,7 +16,6 @@ feature "Log In", type: :feature do
   end
 
   scenario "I want to be able to access the signed up page from log in page" do
-    visit('/session/new')
 
     click_link("Sign Up")
 
