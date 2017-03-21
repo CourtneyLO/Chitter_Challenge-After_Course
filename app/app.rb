@@ -18,7 +18,7 @@ use Rack::MethodOverride
 
 
   get '/' do
-    @peeps = Peep.all
+    @peeps = Peep.all.reverse
     erb :'home_page'
   end
 
