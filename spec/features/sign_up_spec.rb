@@ -5,7 +5,7 @@ feature "Sign Up", type: :feature do
   scenario "I want to be able to sign in to chitter" do
     expect{ sign_up }.to change(User, :count).by(1)
     expect(current_path).to eq("/")
-    expect(page).to have_content("Welcome Dan")
+    expect(page).to have_content("Dan")
   end
 
   scenario "I should not be able to sign up if password and password confirmation do not match" do
@@ -33,6 +33,6 @@ feature "Sign Up", type: :feature do
     click_link('Log In')
 
     expect(current_path).to eq('/session/new')
-    expect(page).to have_content("Log In") 
+    expect(page).to have_content("Log In")
   end
 end
