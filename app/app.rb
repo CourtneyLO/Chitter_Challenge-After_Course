@@ -14,6 +14,8 @@ class Chitter < Sinatra::Base
 enable :sessions
 set :session_secret, 'super secret'
 
+use Rack::MethodOverride
+
 
   get '/' do
     @peeps = Peep.all
@@ -46,9 +48,11 @@ get '/session/new' do
 end
 
 post '/session' do
-  @user = User.authenticate(params[:username], params[:password])
+  @user = User.authenticate(params[:username],
+                            params[:password])
 
   if @user
+    session[:user_id] = @user.id
     session[:name] = @user.name
     redirect '/'
   else
@@ -63,15 +67,18 @@ end
 post '/peep' do
   @peep = Peep.create(message: params[:message])
 
-  if @peep.save
-    redirect('/')
-  else
-    redirect ('/peep/new')
-  end
+    if @peep.save
+      redirect('/')
+    else
+      redirect ('/peep/new')
+    end
 
 end
 
-
+delete '/session' do
+  session[:user_id] = nil
+  redirect('/session/new')
+end
 
 helpers do
    def current_user

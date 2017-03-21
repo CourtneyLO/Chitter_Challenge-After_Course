@@ -2,11 +2,8 @@ require 'spec_helper'
 
 feature "Add Peep", type: :feature do
 
-  before do
-    sign_up
-  end
-
   scenario "I want to be able to add a peep when I am logged in" do
+    sign_up
     log_in
 
     expect(current_path).to eq('/')
@@ -16,5 +13,6 @@ feature "Add Peep", type: :feature do
       expect(page).to have_content("This is my second peep")
     end
   end
+
 
 end
