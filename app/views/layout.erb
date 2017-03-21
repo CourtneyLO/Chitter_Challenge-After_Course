@@ -1,10 +1,21 @@
-<% if @current_user != nil %>
-  <form action="/session" method="post">
-    <input type='hidden' name='_method' value='delete'>
-    <input type="submit" value="Log Out">
-  </form>
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Chitter</title>
+  </head>
+  <body>
+    <% if current_user %>
+    <h2> <%= current_user.name %> </h2>
+    <form action="/session" method="post">
+      <input type='hidden' name='_method' value='delete'>
+      <input type="submit" value="Log Out">
+    </form>
+    <% else %>
+       <a href='/session/new'>Log In</a>
+       <a href='/user/new'>Sign Up</a>
+    <% end %>
 
-<%= yield %>
-
-      
+    <%= yield %>
+  </body>
+</html>
