@@ -72,7 +72,15 @@ post '/peep' do
     else
       redirect ('/peep/new')
     end
+end
 
+post '/peep/oldest_first' do
+   @peeps = Peep.all
+   erb :home_page
+end
+
+post '/peep/newest_first' do
+    redirect('/')
 end
 
 delete '/session' do

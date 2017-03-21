@@ -1,3 +1,13 @@
+<form action="/peep/oldest_first" method="post">
+  <input type="submit" value="Oldest First">
+</form>
+
+<form action="/peep/newest_first" method="post">
+  <input type="submit" value="Newest First">
+</form>
+
+</form>
+
 <ul id='peeps'>
    <% @peeps.map do |peep| %>
    <li> <%= peep.message %> </li>
