@@ -1,9 +1,11 @@
+require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 require './app/app.rb'
 
+  RuboCop::RakeTask.new(:cop)
   RSpec::Core::RakeTask.new :spec
 
-  task default: [:spec]
+task default: [:cop, :spec]
 
   namespace :db do
     desc "Non destructive upgrade"

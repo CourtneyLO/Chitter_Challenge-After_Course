@@ -26,4 +26,13 @@ feature "Add Peep", type: :feature do
     end
   end
 
+  scenario 'I want to see who posted the peep' do
+    add_peep
+
+    within 'ul#peeps' do
+      expect(page).to have_content("Dan01")
+      expect(page).to have_content("This is my first peep")
+    end
+  end
+
 end

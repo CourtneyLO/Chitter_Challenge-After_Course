@@ -16,7 +16,15 @@ group :test do
   gem 'capybara'
   gem 'rspec-sinatra'
   gem 'cucumber'
-  gem 'rake'
   gem 'database_cleaner'
+  gem 'rubocop-rspec'
+  gem 'rubocop'
+
+end
+
+group :test, :development do
+
+  gem 'pry'
+  gem 'rake'
 
 end

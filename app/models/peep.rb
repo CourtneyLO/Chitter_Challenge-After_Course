@@ -1,7 +1,3 @@
-require 'data_mapper'
-require 'dm-postgres-adapter'
-require 'dm-validations'
-
 class Peep
 
   include DataMapper::Resource
@@ -10,8 +6,6 @@ class Peep
   property :message, String, required: true
   property :date, DateTime
 
-end
+  belongs_to :user
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/chitter_#{ENV['RACK_ENV']}")
-DataMapper.finalize
-DataMapper.auto_upgrade!
+end

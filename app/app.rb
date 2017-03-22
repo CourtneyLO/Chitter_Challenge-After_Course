@@ -1,9 +1,10 @@
 ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
-require_relative './models/user.rb'
-require_relative './models/peep.rb'
-require 'data_mapper'
+# require_relative './models/user.rb'
+# require_relative './models/peep.rb'
+require_relative 'data_mapper_setup'
+# require 'data_mapper'
 
 
 class Chitter < Sinatra::Base
@@ -65,14 +66,12 @@ get '/peep/new' do
 end
 
 post '/peep' do
-  @peep = Peep.create(message: params[:message], date: Time.new)
+    @peep = Peep.create(message: params[:message], date: Time.new, user_id: current_user.id)
+    current_user.peeps << @peep
+    redirect('/')
 
-    if @peep.save
-      redirect('/')
-    else
-      redirect ('/peep/new')
-    end
-end
+  end
+
 
 post '/peep/oldest_first' do
    @peeps = Peep.all
@@ -92,6 +91,7 @@ helpers do
    def current_user
      @current_user ||= User.get(session[:user_id])
    end
+
 end
 
 enable :run

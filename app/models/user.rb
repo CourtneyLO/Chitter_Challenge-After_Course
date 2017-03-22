@@ -1,6 +1,3 @@
-require 'data_mapper'
-require 'dm-postgres-adapter'
-require 'dm-validations'
 require 'bcrypt'
 
 class User
@@ -12,6 +9,8 @@ class User
   property :username, String, required: true, unique: true
   property :email, String, required: true, unique: true
   property :password_digest, Text, required: true
+
+  has n, :peeps, through: Resource
 
   attr_reader :password
   attr_accessor :password_confirmation
@@ -35,7 +34,3 @@ class User
     end
   end
 end
-
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/chitter_#{ENV['RACK_ENV']}")
-DataMapper.finalize
-DataMapper.auto_upgrade!
