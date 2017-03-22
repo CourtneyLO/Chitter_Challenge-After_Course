@@ -8,6 +8,7 @@ gem 'bcrypt'
 gem 'dm-migrations'
 gem 'dm-transactions'
 gem 'dm-validations'
+gem 'dm-core'
 
 
 group :test do

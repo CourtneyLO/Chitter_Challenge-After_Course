@@ -12,6 +12,6 @@
    <% @peeps.map do |peep| %>
    <li> <%= User.get(peep.user_id).username%> </li>
    <li> <%= peep.message %> </li>
-   <li> <%= peep.date.strftime("%d/%m/%Y" " %H:%M") %> </l1>
+   <li> <%= peep.created_at.strftime("%d/%m/%Y" " %H:%M") %> </l1>
    <% end %>
 </ul>
