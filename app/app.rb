@@ -65,7 +65,7 @@ get '/peep/new' do
 end
 
 post '/peep' do
-  @peep = Peep.create(message: params[:message])
+  @peep = Peep.create(message: params[:message], date: Time.new)
 
     if @peep.save
       redirect('/')

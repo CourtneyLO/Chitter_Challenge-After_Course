@@ -11,5 +11,6 @@
 <ul id='peeps'>
    <% @peeps.map do |peep| %>
    <li> <%= peep.message %> </li>
+   <li> <%= peep.date.strftime("%d/%m/%Y" " %H:%M") %> </l1>
    <% end %>
 </ul>
