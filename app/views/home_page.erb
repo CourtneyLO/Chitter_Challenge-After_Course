@@ -10,7 +10,7 @@
 
 <ul id='peeps'>
    <% @peeps.map do |peep| %>
-   <li> <%= User.get(peep.user_id).username%> </li>
+   <li> <%= User.get(peep.user_id).username.capitalize%> </li>
    <li> <%= peep.message %> </li>
    <li> <%= peep.created_at.strftime("%d/%m/%Y" " %H:%M") %> </l1>
    <% end %>

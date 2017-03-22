@@ -6,7 +6,7 @@
   </head>
   <body>
     <% if current_user %>
-    <h2> <%= current_user.name %> </h2>
+    <h2> <%= current_user.name.capitalize %> </h2>
     <form action="/session" method="post">
       <input type='hidden' name='_method' value='delete'>
       <input type="submit" value="Log Out">
