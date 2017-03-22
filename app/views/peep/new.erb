@@ -1,10 +1,10 @@
-<h3>Peep Board</h3>
+<h3>Add Peep:</h3>
+
+<% if current_user %>
 
 <form action="/peep" method="post">
   <label for="message">Message:</label>
   <input type="text" id='message' name="message"/>
-
-<% if current_user != nil  %>
   <input type="submit" value="Add Peep">
 <% end %>
 
